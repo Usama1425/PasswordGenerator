@@ -22,7 +22,7 @@ export default function App() {
   const [numbers, setNumbers] = useState('false')
   const [symbols, setSymbols] = useState('flase')
 
-  const generatePasswordString = (passwordLength:number) => {
+  const generatePasswordString = (passwordLength) => {
     let charachetList = '';
 
     const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -49,9 +49,9 @@ export default function App() {
 
   }
 
-  const createpassword = (characters: string, passwordLength: number) => {
+  const createpassword = (characters, passwordLength) => {
     let result = ''
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < passwordLength; i++) {
       const characterIndex = Math.round(Math.random() * characters.length)
       result += characters.charAt(characterIndex)
     }
@@ -80,7 +80,7 @@ export default function App() {
             validationSchema={PasswordSchema}
             onSubmit={values => {
               console.log(values);
-              generatePasswordString(+values.passwordLength) //TODO
+              generatePasswordString(values.passwordLength) //TODO
             }}
           >
             {({
@@ -91,6 +91,7 @@ export default function App() {
               handleChange,
               handleSubmit,
               handleReset,
+              submitForm
               /* and other goodies */
             }) => (
               <>
@@ -169,7 +170,7 @@ export default function App() {
                     style={styles.secondaryBtn}
                     onPress={() => {
                       handleReset();
-                      resetPasswordState()
+                      resetPasswordState();
                     }}
                   >
                     <Text style={styles.secondaryBtnTxt} >Reset</Text>
